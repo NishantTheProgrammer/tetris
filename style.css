@@ -15,10 +15,28 @@ h1 {
 }
 
 .box {
-    height: 25px;
-    width: 25px;
+    height: 10px;
+    width: 10px;
+    font-size: 10px;
     border: 1px solid rgb(110, 18, 18);
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
 }
+
+.box.selected {
+     border: 1px solid rgb(86, 187, 39);
+}
+
+.color-0  { background-color: none; color: white; }
+.color-1  { background-color: orange; }
+.color-2  { background-color: yellow; }
+.color-3  { background-color: cyan; }
+.color-4  { background-color: magenta; }
+.color-5  { background-color: limegreen; }
+.color-6  { background-color: teal; }
+.color-7  { background-color: gold; }
+.color-8  { background-color: deeppink; }
+.color-9  { background-color: dodgerblue; }
+.color-10 { background-color: tomato; }
