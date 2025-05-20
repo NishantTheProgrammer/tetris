@@ -1,14 +1,14 @@
 console.log('hello')
 
-const M = 50;
-const N = 30;
+const M = 20;
+const N = 10;
 let grid;
 
 let pointer = {
     x: 0,
     y: 0,
     color: null,
-    shape: null
+    shape: []
 };
 
 const shapes = [
@@ -32,18 +32,35 @@ const getRandomColor = () => {
     return random;
 }
 
+const saveShapeOnGrid = () => {
+    pointer.shape.forEach(({ x, y }) => {
+        grid[pointer.x + x][pointer.y + y] = pointer.color;
+    });
+
+
+    console.log(grid);
+}
+
 const getRandomShape = () => {
     const index = Math.floor(Math.random() * shapes.length);
-    return shapes[1];
+    return shapes[index];
+}
+
+
+let i = 2;
+const getNextItem = () => {
+    saveShapeOnGrid();
+    pointer.color = getRandomColor();
+    pointer.shape = getRandomShape();
+    pointer.x = 0;
+    pointer.y = 0;
 }
 
 const intializeGrid = () => {
     grid = new Array(N).fill(0).map(() => {
         return new Array(M).fill(0);
     });
-
-    pointer.color = getRandomColor();
-    pointer.shape = getRandomShape();
+    getNextItem();
 }
 
 const render = () => {
@@ -73,7 +90,6 @@ const render = () => {
                         color = pointer.color;
                     }
 
-                    console.log({pointer, color});
 
 
 
@@ -113,8 +129,8 @@ const startGame = () => {
 startGame();
 
 const keyDownHandler = e => {
-    console.log(e.code);
     switch(e.code) {
+        case 'KeyN': getNextItem(); break;
         case 'Space': printOnGrid(); break;
         case 'ArrowUp': move(-1, 0); break;
         case 'ArrowDown': move(1, 0); break;
